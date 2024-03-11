@@ -13,5 +13,8 @@ def test_get_hide_card():
     assert utils.get_hide_card("Maestro 1308795367077170", "Получатель неизвестен") == (
         'Maestro 1308 79** **** 7170', 'Получатель неизвестен')
 
-
+def test_get_state():
+    assert utils.get_state("EXECUTED") == 'Операция прошла'
+    assert utils.get_state('CANCELED') == 'Операция не прошла'
+    assert utils.get_state('Статус неизвестен') == 'Статус неизвестен'
 
