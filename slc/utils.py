@@ -22,9 +22,9 @@ def get_trans(data, element):
         description = transaction.setdefault('description', 'Назначение неизвестно')
         from_account = transaction.setdefault('from', 'Отправитель неизвестен')
         to_account = transaction.setdefault('to', 'Получатель неизвестен')
-        amount = transaction['operationAmount'].setdefault('amount', 'Сумма неизвестна')
-        currency = transaction['operationAmount']['currency'].setdefault('name', 'Валюта неизвестна')
 
+        currency = transaction['operationAmount']['currency'].setdefault('name', 'Валюта неизвестна')
+        amount = transaction['operationAmount'].setdefault('amount', 'Сумма неизвестна')
 
         return (date, description, from_account, to_account, amount, currency, state)
 
