@@ -8,6 +8,7 @@ for i in range(-5, 0):
     from_account, to_account = get_hide_card(from_account, to_account)
 
     state = get_state(state)
+
     print(f'''{date} {description}
     {from_account} -> {to_account}
     {amount} {currency} : {state}''')
