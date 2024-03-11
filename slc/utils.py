@@ -1,25 +1,37 @@
 import json
 
 
-def display_last_transactions(element=int):
+def display_last_transactions():
+    """
+    функция чтение json-файла
+    """
     with open('operations.json', 'r', encoding="utf-8") as file:
         data = json.load(file)
-
-        transactions = data[element:]
-
-        for transaction in transactions:
-            date = transaction.setdefault('date', 'Дата неизвестна')
-            description = transaction.setdefault('description', 'Назначение неизвестно')
-            from_account = transaction.setdefault('from', 'Отправитель неизвестен')
-            to_account = transaction.setdefault('to', 'Получатель неизвестен')
-            amount = transaction['operationAmount'].setdefault('amount', 'Сумма неизвестна')
-            currency = transaction['operationAmount']['currency'].setdefault('name', 'Валюта неизвестна')
+        return data
 
 
-            return (date, description, from_account, to_account, amount, currency)
+def get_trans(data, element):
+    '''
+    возвращает всю доступную информацию о переводе
+    '''
+    transactions = data[element:]
+
+    for transaction in transactions:
+        date = transaction.setdefault('date', 'Дата неизвестна')
+        description = transaction.setdefault('description', 'Назначение неизвестно')
+        from_account = transaction.setdefault('from', 'Отправитель неизвестен')
+        to_account = transaction.setdefault('to', 'Получатель неизвестен')
+        amount = transaction['operationAmount'].setdefault('amount', 'Сумма неизвестна')
+        currency = transaction['operationAmount']['currency'].setdefault('name', 'Валюта неизвестна')
+
+
+        return (date, description, from_account, to_account, amount, currency)
+
 
 def get_hide_card(from_account, to_account):
-
+    """
+    Маскирует номер счета/карты
+    """
     if from_account != 'Отправитель неизвестен':
         from_account = from_account.split(' ')
 
