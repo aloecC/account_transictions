@@ -18,14 +18,15 @@ def get_trans(data, element):
 
     for transaction in transactions:
         date = transaction.setdefault('date', 'Дата неизвестна')
+        state = transaction.setdefault('state', 'Статус неизвестен')
         description = transaction.setdefault('description', 'Назначение неизвестно')
         from_account = transaction.setdefault('from', 'Отправитель неизвестен')
         to_account = transaction.setdefault('to', 'Получатель неизвестен')
-        amount = transaction['operationAmount'].setdefault('amount', 'Сумма неизвестна')
+
         currency = transaction['operationAmount']['currency'].setdefault('name', 'Валюта неизвестна')
+        amount = transaction['operationAmount'].setdefault('amount', 'Сумма неизвестна')
 
-
-        return (date, description, from_account, to_account, amount, currency)
+        return (date, description, from_account, to_account, amount, currency, state)
 
 
 def get_hide_card(from_account, to_account):
@@ -57,3 +58,11 @@ def get_hide_card(from_account, to_account):
         masked_account_to = 'Получатель неизвестен'
 
     return masked_account_from, masked_account_to
+
+def get_state(state):
+    if state == "CANCELED":
+        return 'Операция не прошла'
+    elif state == "EXECUTED":
+        return 'Операция прошла'
+    else:
+        return 'Статус неизвестен'
