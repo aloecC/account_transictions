@@ -1,9 +1,9 @@
-from utils import display_last_transactions, get_hide_card
+from utils import display_last_transactions, get_hide_card, get_trans
 
 for i in range(-5, 0):
     element = i
-
-    date, description, from_account, to_account, amount, currency = display_last_transactions(element)
+    data = display_last_transactions()
+    date, description, from_account, to_account, amount, currency = get_trans(data,element)
 
     from_account, to_account = get_hide_card(from_account, to_account)
 
