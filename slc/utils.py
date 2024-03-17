@@ -98,7 +98,7 @@ def get_state(state):
 
 def get_operation(data, element):
     '''
-    функция проверяет точно ли операция прошла успешно
+    функция приводит все данные к требуемому формату
     '''
     date, description, from_account, to_account, amount, currency, state = get_trans(data, element)
     date = required_date_format(date)
