@@ -32,7 +32,7 @@ def sorting_date_list():
     Функция возвращает отсортированный по дате список
     """
     date_operations = successful_operations()
-    number_of_operations = 6
+    number_of_operations = 5
     return sorted(date_operations, key=itemgetter('date'), reverse=True)[0:number_of_operations]
 
 
