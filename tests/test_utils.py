@@ -40,3 +40,5 @@ def test_successful_operations():
 
 def test_display_last_transactions():
     assert type(display_last_transactions()) == list
+
+
