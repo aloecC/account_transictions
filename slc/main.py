@@ -1,5 +1,5 @@
 from utils import get_operation, sorting_date_list
-import os
+
 
 
 data = sorting_date_list()
@@ -12,4 +12,3 @@ for element in range(5):
     {amount} {currency} : {state}''')
 
 
-print(os.getcwd())
