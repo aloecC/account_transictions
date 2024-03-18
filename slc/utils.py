@@ -1,7 +1,7 @@
 import json
 from operator import itemgetter
 from datetime import datetime
-file_json_setup = "C:/Users/ЗС/PycharmProject/account_transictions/slc/operations.json"
+file_json_setup = "C:/Users/ЗС\PycharmProjects/account_transictions/tests/operations.json"
 
 
 def display_last_transactions():
