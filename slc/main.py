@@ -1,7 +1,5 @@
 from utils import get_operation, sorting_date_list
 
-
-
 data = sorting_date_list()
 
 for element in range(5):
@@ -10,5 +8,3 @@ for element in range(5):
     print(f'''{date} {description}
     {from_account} -> {to_account}
     {amount} {currency} : {state}''')
-
-
