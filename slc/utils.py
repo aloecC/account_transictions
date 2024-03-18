@@ -1,13 +1,14 @@
 import json
 from operator import itemgetter
 from datetime import datetime
+file_json_setup = "C:/Users/ЗС/PycharmProject/account_transictions/slc/operations.json"
 
 
 def display_last_transactions():
     """
     функция чтение json-файла
     """
-    with open('operations.json', 'r', encoding="utf-8") as file:
+    with open(file_json_setup, 'r', encoding="utf-8") as file:
         file = json.load(file)
         return file
 
