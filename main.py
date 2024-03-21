@@ -9,8 +9,6 @@ print(os.path.dirname(os.path.abspath(sys.argv[0])))
 SCRIPT_DIR = os.path.dirname(os.path.abspath(sys.argv[0]))
 FILE_JSON = os.path.join(SCRIPT_DIR, 'operations.json')
 
-
-
 data = sorting_date_list(FILE_JSON)
 
 for element in range(5):
