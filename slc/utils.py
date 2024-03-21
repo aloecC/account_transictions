@@ -1,23 +1,22 @@
 import json
 from operator import itemgetter
 from datetime import datetime
-file_json_setup = "C:/Users/ЗС\PycharmProjects/account_transictions/tests/operations.json"
 
 
-def display_last_transactions():
+def display_last_transactions(file_json):
     """
     функция чтение json-файла
     """
-    with open(file_json_setup, 'r', encoding="utf-8") as file:
+    with open(file_json, 'r', encoding="utf-8") as file:
         file = json.load(file)
         return file
 
 
-def successful_operations():
+def successful_operations(file_json):
     """
     Функция возвращает список успешных операций
     """
-    file = display_last_transactions()
+    file = display_last_transactions(file_json)
     executed_operations = []
     for item in file:
         if not item:
@@ -27,12 +26,12 @@ def successful_operations():
     return executed_operations
 
 
-def sorting_date_list():
+def sorting_date_list(success_list):
     """
     Функция возвращает отсортированный по дате список
     """
-    date_operations = successful_operations()
-    number_of_operations = 5
+    date_operations = successful_operations(success_list)
+    number_of_operations = 6
     return sorted(date_operations, key=itemgetter('date'), reverse=True)[0:number_of_operations]
 
 
@@ -60,7 +59,7 @@ def get_trans(data, element):
         currency = transaction['operationAmount']['currency'].setdefault('name', 'Валюта неизвестна')
         amount = transaction['operationAmount'].setdefault('amount', 'Сумма неизвестна')
 
-        return (date, description, from_account, to_account, amount, currency, state)
+        return date, description, from_account, to_account, amount, currency, state
 
 
 def get_hide_card(card_number):
@@ -72,8 +71,8 @@ def get_hide_card(card_number):
         for item in card_number:
             if item.isdigit():
                 numbers += item
-        string_out = card_number[:card_number.find(numbers) - 1]  # символьный раздел
-        numbers_out = card_number[card_number.find(numbers):]  # цифровой раздел
+        string_out = card_number[:card_number.find(numbers) - 1]
+        numbers_out = card_number[card_number.find(numbers):]
         if len(numbers_out) == 16:
             numbers_out = numbers_out[:4] + ' ' + numbers_out[4:6] + "**" + " " + "****" + " " + numbers_out[-4:]
         elif len(numbers_out) == 20:
@@ -98,12 +97,12 @@ def get_state(state):
 
 
 def get_operation(data, element):
-    '''
+    """
     функция приводит все данные к требуемому формату
-    '''
+    """
     date, description, from_account, to_account, amount, currency, state = get_trans(data, element)
     date = required_date_format(date)
     from_account = get_hide_card(from_account)
     to_account = get_hide_card(to_account)
     state = get_state(state)
-    return (date, description, from_account, to_account, amount, currency, state)
+    return date, description, from_account, to_account, amount, currency, state
